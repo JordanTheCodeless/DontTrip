@@ -1,0 +1,15 @@
+{
+  "name": "donttrip",
+  "version": "1.0.0",
+  "description": "This is a web application designed to serve people wanting to plan trips",
+  "main": "index.js",
+  "scripts": {
+    "test": "nodemon src/server.js"
+  },
+  "author": "JordanTheCodeless",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^5.3.3",
+    "express": "^4.21.1"
+  }
+}

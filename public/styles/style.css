@@ -1,0 +1,18 @@
+html{
+    margin:0;
+}
+body{
+    background-image: url("../images/hot-air-balloons-4561267_1920.jpg");
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    margin:0 auto;
+
+}
+#bodyWrapper{
+    background-color: rgba(246, 244, 240, 0.4);
+    height: 100vh;
+    width: 100vw;
+    margin: 0 auto;
+}
