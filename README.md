@@ -1,2 +1,2 @@
 # DontTrip
-This is trip planning web application ..
+This is a trip planning web application ..
