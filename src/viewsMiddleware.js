@@ -1,5 +1,5 @@
 const path = require('path');
-const validPages = ["homepage","about","trip","index"];
+const validPages = ["homepage","about","trip","index","contact"];
 function viewHandler(req,res,next){
     let page = null;
     if (req.params.page) {
@@ -20,7 +20,7 @@ const relativePath = path.join(__dirname, `../views`, `${page}.html`);
 // Testing ^
 res.sendFile(relativePath, err =>{
     if(err){
-        console.log(`There was an error getting ${page} the request at this moment`);
+        console.log(`There was an error getting ${page} page at this moment`);
     }
     else{
         console.log(`The following page has been accessed ${page}`);

@@ -3,16 +3,33 @@ html{
 }
 body{
     background-image: url("../images/hot-air-balloons-4561267_1920.jpg");
+    background-image:100vh 100vw fit-content ;
     background-attachment: fixed;
-    background-size: cover;
+    background-size:cover;
     background-repeat: no-repeat;
     background-position: center center;
-    margin:0 auto;
-
+    text-align: center;
 }
 #bodyWrapper{
-    background-color: rgba(246, 244, 240, 0.4);
+    background-color: rgba(34, 32, 33, 0.26);
     height: 100vh;
     width: 100vw;
-    margin: 0 auto;
+
+}
+header > nav.navbar {
+    font-size: 25px;
+    color: blue;
+}
+#navbar-brand > a{
+    font-size: 25px;
+}
+.hero-image>img{
+    object-fit: contain;
+    width: 80vw;
+    height:80vh;
+}
+.container{
+    display: flex;
+    align-content: center;
+    justify-content: center;
 }
