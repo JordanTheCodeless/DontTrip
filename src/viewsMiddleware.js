@@ -9,22 +9,23 @@ function viewHandler(req,res,next){
 if(page === "homepage" || page === "index"){
     page = "index";
 }
+
 //    If page isnt found send them to 404 allows for case sensitive options also
    if(!validPages.includes(page)){
-     return res.sendFile(path.join(__dirname,"../views/404.html"));
+     return res.render("404");
    }
-// Create file path const
-const relativePath = path.join(__dirname, `../views`, `${page}.html`);
-// console.log("Requesting page:", page);
-// console.log("File path:", relativePath);
-// Testing ^
-res.sendFile(relativePath, err =>{
-    if(err){
-        console.log(`There was an error getting ${page} page at this moment`);
-    }
-    else{
-        console.log(`The following page has been accessed ${page}`);
-    }
-})
+//    Needed to implement res.render due to project changes
+   try {
+    res.render(page);
+    console.log(`Page "${page}" rendered successfully.`);
+} catch (err) {
+    console.error(`Error rendering page: ${page}`);
+    return next(err);
+}
 }
 module.exports = viewHandler;
+
+// GET https://failteireland.azure-api.net/opendata-api/v2/attractions HTTP/1.1
+
+// Cache-Control: cache
+
