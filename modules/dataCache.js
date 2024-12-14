@@ -1,14 +1,29 @@
 const axios = require("axios");
+const fs = require("fs");
+
 async function fetchData() {
-    // JavaScript Example: Fetch All Data
-    // This function demonstrates how to fetch all data using the Fetch API.
+    let limit = 5;
+    let url = `https://freetestapi.com/api/v1/destinations?limit=${limit}`;
 
-    const limit = 5;
-    const keyword = "Dublin";
+    try {
+        let response = await axios.get(url);
+        let cachedData = response.data.map((post) => ({
+                id: post.id,
+                name: post.name,
+                image: post.image,
+                population: post.population,
+                description: post.description,
+                times_visited: 3
 
-    fetch(`https://freetestapi.com/api/v1/destinations?limit=${limit}?search=${keyword}`)
-    .then(response => response.json())
-    .then(data => console.log(data))
-    .catch(error => console.error('Error:', error));
+        }
+             // default value for times visited
+        ));
+        return cachedData;
+
+    } catch (error) {
+        console.error("Error", error.message);
+        return [];
+    }
 }
-fetchData();
+
+module.exports = fetchData;

@@ -1,8 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Sniglet:wght@400;800&display=swap');
 
-html{
-    margin:0;
-}
+
 body{
     background-image: url("../images/hot-air-balloons-4561267_1920.jpg");
     background-image:100vh 100vw fit-content ;
@@ -14,8 +12,10 @@ body{
 }
 #bodyWrapper{
     background-color: rgba(34, 32, 33, 0.26);
-    height: 100vh;
-    width: 100vw;
+    height: 100%;
+    width: 100%;
+    min-height: 100%;
+    min-width: 100%;
 
 }
 header > nav.navbar {
@@ -35,4 +35,18 @@ header > nav.navbar {
     display: flex;
     align-content: center;
     justify-content: center;
+}
+form{
+    padding:20px;
+    border-radius:10px;
+}
+.card{
+    padding:11px;
+    margin:0 auto;
+}
+.card>img{
+    height: auto;
+}
+.updateButtons{
+    display:none;
 }
