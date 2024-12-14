@@ -4,12 +4,14 @@
   "description": "This is a web application designed to serve people wanting to plan trips",
   "main": "index.js",
   "scripts": {
-    "test": "nodemon src/server.js"
+    "test": "nodemon server.js"
   },
   "author": "JordanTheCodeless",
   "license": "ISC",
   "dependencies": {
+    "axios": "^1.7.9",
     "bootstrap": "^5.3.3",
+    "ejs": "^3.1.10",
     "express": "^4.21.1"
   }
 }
