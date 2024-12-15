@@ -14,7 +14,6 @@ async function fetchData() {
                 population: post.population,
                 description: post.description,
                 times_visited: 3
-
         }
              // default value for times visited
         ));

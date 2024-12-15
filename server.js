@@ -18,6 +18,7 @@ app.get("/", (req, res) => {
     res.render("index");
 });
 // Use the tripRoutes file for routes related to trips
+app.use('/', tripRoutes);
 // Allowing app to run on this server
 app.get('/:page', staticRoutes);
 app.listen(3000, () => {
