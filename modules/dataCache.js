@@ -10,10 +10,10 @@ async function fetchData() {
         let cachedData = response.data.map((post) => ({
                 id: post.id,
                 name: post.name,
-                image: post.image,
+                // image: post.image,
                 population: post.population,
                 description: post.description,
-                times_visited: 3
+                visits: 3
         }
              // default value for times visited
         ));
