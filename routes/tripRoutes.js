@@ -8,26 +8,44 @@ let tripsLocal = "trips.json";
 let trips = [];
 // Editing file
 router.put("/edit/:id", (req, res) => {
-  const { id } = req.params; // here I request the parameter passed from the script fetch
-  const { name, description, visits } = req.body;
-  const tripIndex = trips.findIndex((trip) => trip.id === parseInt(id));
-  if (tripIndex !== -1) {
-    trips[tripIndex] = {
-      id: parseInt(id),
-      name: name,
-      description: description,
-      visits: visits,
-    };
-    fs.writeFile(tripsLocal, JSON.stringify(trips, null, 2), (err) => {
+    const { id } = req.params;
+    const { name, description, visits } = req.body;
+    if (!name || !description || visits === undefined) {
+      return res.status(400).json({ message: "Missing required fields" });
+    }
+    fs.readFile(tripsLocal, "utf8", (err, data) => {
       if (err) {
-        return res.status(500).json({ message: "Failed to save trip to JSON" });
+        console.error(err);
+        return res.status(500).json({ message: "Failed to read trips file" });
       }
-      return res.status(200).json({ message: "Trip updated successfully" });
+      let trips = [];
+      try {
+        trips = JSON.parse(data);
+      } catch (e) {
+        return res.status(500).json({ message: "Failed to parse trips data" });
+      }
+      const tripIndex = trips.findIndex((trip) => trip.id === parseInt(id));
+
+      if (tripIndex !== -1) {
+        trips[tripIndex] = {
+          id: parseInt(id),
+          name,
+          description,
+          visits,
+        };
+        fs.writeFile(tripsLocal, JSON.stringify(trips, null, 2), (err) => {
+          if (err) {
+            console.error(err);
+            return res.status(500).json({ message: "Failed to save trip to JSON" });
+          }
+          return res.status(200).json({ message: "Trip updated successfully" });
+        });
+      } else {
+        return res.status(404).json({ message: "Trip not found" });
+      }
     });
-  } else {
-    return res.status(404).json({ message: "Error updating trip server side" });
-  }
-});
+  });
+
 // Deleting a trip
 router.delete("/delete/:id", (req, res) => {
   const id = parseInt(req.params.id);
@@ -52,6 +70,38 @@ router.delete("/delete/:id", (req, res) => {
   });
 });
 
+router.get('/create', (req,res) => {
+    res.render('create');
+
+})
+router.post('/create', (req, res) => {
+    const { tripName, tripDescription, tripVisits } = req.body;
+    if (!tripDescription || !tripName || !tripVisits) {
+        return res.render('create');
+    }
+    let lastID = 0;
+    for (let trip of trips) {
+        if (trip.id > lastID) {
+            lastID = trip.id;
+        }
+    }
+    let tripID = lastID + 1;
+
+    const createdTrip = {
+        id: tripID,
+        name: tripName,
+        description: tripDescription,
+        visits: parseInt(tripVisits)
+    };
+    fs.readFile(tripsLocal, (err, data) => {
+        const trips = JSON.parse(data);
+        trips.push(createdTrip);
+        fs.writeFile(tripsLocal, JSON.stringify(trips, null, 2), () => {
+            res.redirect("/trip");
+        });
+    });
+});
+
 router.get("/", (req, res) => {
   // try catch statement to read from file if exists if not still render trips as empty and give error message
   // https://dev.to/tejesh/nodejs-read-json-file-using-require-vs-fs-module-4f94
@@ -72,12 +122,13 @@ router.get("/refresh", async (req, res) => {
   try {
     trips = await fetchData();
     fs.writeFileSync(tripsLocal, JSON.stringify(trips, null, 2), "utf-8");
-    res.render("trip", { trips: trips });
+    res.redirect("/trip");
+
   } catch (e) {
     if (e) {
       console.error(
         "There has been an error processing your request : ",
-        error
+        e
       );
       res.render("trip", { trips });
     }
