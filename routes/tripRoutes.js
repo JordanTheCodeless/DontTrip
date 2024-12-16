@@ -1,11 +1,21 @@
 const express = require("express");
 const router = express.Router(); // This will be my export router for all things trips
 const fs = require("fs");
+const multer = require('multer');
 const fetchData = require("../modules/dataCache");
+let storage = multer.diskStorage({
+    destination: function (req,file, cb){
+        cb(null, './public/uploads')
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.originalname)
+      }
+})
 // Creating local JSON path
 let tripsLocal = "trips.json";
 // Empty array to push data upon
 let trips = [];
+var upload = multer({ storage: storage })
 // Editing file
 router.put("/edit/:id", (req, res) => {
     const { id } = req.params;
@@ -74,12 +84,14 @@ router.get('/create', (req,res) => {
     res.render('create');
 
 })
-router.post('/create', (req, res) => {
+router.post('/create', upload.single('profile-file'), (req, res) => {
     const { tripName, tripDescription, tripVisits } = req.body;
+    const tripImage = req.file;
     if (!tripDescription || !tripName || !tripVisits) {
         return res.render('create');
     }
     let lastID = 0;
+    // find the last id that exists
     for (let trip of trips) {
         if (trip.id > lastID) {
             lastID = trip.id;
@@ -90,6 +102,7 @@ router.post('/create', (req, res) => {
     const createdTrip = {
         id: tripID,
         name: tripName,
+        image: `/uploads/${tripImage.filename}`, // needed to move it into public folder was having issues accessing level below root
         description: tripDescription,
         visits: parseInt(tripVisits)
     };

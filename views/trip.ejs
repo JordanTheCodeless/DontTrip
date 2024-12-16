@@ -71,7 +71,7 @@
         <% trips.forEach(trip => { %>
           <div class="col-12 col-md-6 col-lg-4">
             <div class="card h-100 w-75">
-              <!-- <img class="card-img-top" src="<%= trip.image%>" alt="<%= trip.name%>"> -->
+              <img class="card-img-top" src="<%= trip.image%>" alt="<%= trip.name%>">
               <div class="card-body">
                 <h5 class="card-title" id="tripName<%= trip.id %>"><%= trip.name %></h5>
                 <p id="tripID<%= trip.id %>" style="display: none;"><%= trip.id %></p>
