@@ -31,7 +31,7 @@
           class="bg-light"
           action="/trip/create"
           method="POST"
-
+          enctype="multipart/form-data"
         >
           <div class="mb-3">
             <label for="tripName" class="form-label">Trip Name</label>
@@ -67,6 +67,11 @@
             id="tripVisitsCreate"
             placeholder="Number of visits" name="tripVisits" required
           />
+        </div>
+        <div class="input-group mb-3">
+          <!-- https://stackoverflow.com/questions/3828554/how-to-allow-input-type-file-to-accept-only-image-files -->
+          <input type="file" class="form-control" id="inputGroupFile02" name="profile-file" accept="image/png, image/gif, image/jpeg">
+          <label class="input-group-text" for="inputGroupFile02">Upload a trip photo</label>
         </div>
           <div class="d-grid gap-2">
             <button  id="createTripBtn" type="submit" class="btn btn-primary">Create Trip</button>

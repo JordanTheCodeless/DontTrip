@@ -34,19 +34,20 @@
           <div class="modal-body">
             <form id="editTripForm">
               <div class="mb-3">
-                <input type= text id="tripIDForm" style="display: none;" name="tripID"/>
-                <label for="tripNameForm" class="form-label" >Name</label>
-                <input type="text" class="form-control" id="tripNameForm" placeholder="Enter trip name" name="tripName" />
+                <input type= text id="tripIDModal" style="display: none;" name="tripID"/>
+                <input type= text id="tripImageModal" style="display: none;" name="tripImage"/>
+                <label for="tripNameModal" class="form-label" >Name</label>
+                <input type="text" class="form-control" id="tripNameModal" placeholder="Enter trip name" name="tripName" />
               </div>
               <div class="mb-3">
-                <label for="tripDescriptionForm" class="form-label">Description</label>
-                <textarea class="form-control" id="tripDescriptionForm" rows="4" placeholder="Enter trip description" name="tripDescription"></textarea>
+                <label for="tripDescriptionModal" class="form-label">Description</label>
+                <textarea class="form-control" id="tripDescriptionModal" rows="4" placeholder="Enter trip description" name="tripDescription" required></textarea>
               </div>
               <div class="mb-3">
-                <label for="tripVisitsForm" class="form-label">Visits</label>
-                <input type="number" max="20" min="1" class="form-control" id="tripVisitsForm" placeholder="Number of visits" />
+                <label for="tripVisitsModal" class="form-label">Visits</label>
+                <input type="number" max="20" min="1" class="form-control" id="tripVisitsModal" placeholder="Number of visits" required/>
               </div>
-              <div class="input-group mb-3">
+              <!-- <div class="input-group mb-3">
                 <div class="input-group-prepend">
                   <span class="input-group-text">Upload</span>
                 </div>
@@ -54,7 +55,7 @@
                   <input type="file" class="custom-file-input" id="inputGroupFile01">
                   <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                 </div>
-              </div>
+              </div> -->
             </form>
           </div>
           <div class="modal-footer">
@@ -71,18 +72,18 @@
         <% trips.forEach(trip => { %>
           <div class="col-12 col-md-6 col-lg-4">
             <div class="card h-100 w-75">
-              <img class="card-img-top" src="<%= trip.image%>" alt="<%= trip.name%>">
+              <img class="card-img-top" id="tripImage<%= trip.id%>" src="<%= trip.image%>" alt="<%= trip.name%>">
               <div class="card-body">
                 <h5 class="card-title" id="tripName<%= trip.id %>"><%= trip.name %></h5>
                 <p id="tripID<%= trip.id %>" style="display: none;"><%= trip.id %></p>
                 <p id="tripDescription<%= trip.id %>"><%= trip.description %></p>
-                <p><strong>Visits:</strong> <span id="tripVisits<%= trip.id %>"><%= trip.times_visited %></span></p>
+                <p><strong>Visits:</strong> <span id="tripVisits<%= trip.id %>"><%= trip.visits %></span></p>
               </div>
               <div class ="updateButtons">
               <div class="card-body ">
                 <!-- <button class=" btn btn-primary" onclick="insertTripDetails('<%= trip.id %>')">Edit</button> -->
 
-                <button class=" btn btn-primary" onclick="insertTripDetails('<%= trip.id %>')">Edit</button>
+                <button class=" btn btn-primary" onclick="editTripDetails('<%= trip.id %>')">Edit</button>
                 <button class=" btn btn-danger" onclick="deleteThisTrip('<%= trip.id %>')">Delete</button>
               </div>
               </div>

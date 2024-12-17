@@ -13,8 +13,7 @@ async function fetchData() {
                 image: post.image,
                 population: post.population,
                 description: post.description,
-                times_visited: 3
-
+                visits: 3
         }
              // default value for times visited
         ));
