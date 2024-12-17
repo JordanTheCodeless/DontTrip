@@ -35,6 +35,7 @@
             <form id="editTripForm">
               <div class="mb-3">
                 <input type= text id="tripIDModal" style="display: none;" name="tripID"/>
+                <input type= text id="tripImageModal" style="display: none;" name="tripImage"/>
                 <label for="tripNameModal" class="form-label" >Name</label>
                 <input type="text" class="form-control" id="tripNameModal" placeholder="Enter trip name" name="tripName" />
               </div>
@@ -71,7 +72,7 @@
         <% trips.forEach(trip => { %>
           <div class="col-12 col-md-6 col-lg-4">
             <div class="card h-100 w-75">
-              <img class="card-img-top" src="<%= trip.image%>" alt="<%= trip.name%>">
+              <img class="card-img-top" id="tripImage<%= trip.id%>" src="<%= trip.image%>" alt="<%= trip.name%>">
               <div class="card-body">
                 <h5 class="card-title" id="tripName<%= trip.id %>"><%= trip.name %></h5>
                 <p id="tripID<%= trip.id %>" style="display: none;"><%= trip.id %></p>

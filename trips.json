@@ -1,19 +1,17 @@
 [
   {
     "id": 2,
-    "name": "Tokyo",
     "image": "https://cdn.pixabay.com/photo/2015/06/29/04/41/tokyo-tower-825196_1280.jpg",
-    "population": "13.5 million",
-    "description": "Tokyo is a bustling metropolis known for its modern technology, historic temples, vibrant neighborhoods, and unique blend of tradition and innovation. Experience the neon lights of Shibuya, explore ancient shrines like Meiji Shrine, and indulge in authentic Japanese cuisine.",
-    "visits": 3
+    "name": "Tokyo",
+    "description": "Tokyo is a bustling metropolis known for its modern technology, historic temples, vibrant neighborhoods, andd of tradition and innovation. Experience the neon lights of Shibuya, explore ancient shrines like Meiji Shrine, and indulge in authentic Japanese cuisine.",
+    "visits": "3"
   },
   {
     "id": 3,
-    "name": "New York City",
     "image": "https://cdn.pixabay.com/photo/2015/03/11/12/31/buildings-668616_1280.jpg",
-    "population": "8.4 million",
-    "description": "New York City is a global cultural hub, known for its iconic skyline, Broadway theaters, and diverse neighborhoods. Experience the energy of Times Square, visit world-famous museums, and enjoy Central Park's green oasis.",
-    "visits": 3
+    "name": "New York City",
+    "description": "New Yor Central Park's green oasis.",
+    "visits": "3"
   },
   {
     "id": 4,

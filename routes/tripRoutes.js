@@ -19,7 +19,7 @@ var upload = multer({ storage: storage })
 // Editing file
 router.put("/edit/:id", (req, res) => {
     const { id } = req.params;
-    const { name, description, visits } = req.body;
+    const { name, description, visits, image } = req.body;
     if (!name || !description || visits === undefined) {
       return res.status(400).json({ message: "Missing required fields" });
     }
@@ -39,6 +39,7 @@ router.put("/edit/:id", (req, res) => {
       if (tripIndex !== -1) {
         trips[tripIndex] = {
           id: parseInt(id),
+          image,
           name,
           description,
           visits,
